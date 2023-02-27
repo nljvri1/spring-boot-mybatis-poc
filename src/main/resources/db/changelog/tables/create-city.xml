@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog logicalFilePath="changelog-master.xml" xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.9.xsd">
+
+    <changeSet id="create-city" author="jasper.devries">
+        <createSequence sequenceName="city_city_id_seq"/>
+
+        <createTable tableName="city">
+            <column name="city_id" type="NUMERIC(9)" defaultValueSequenceNext="city_city_id_seq">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="city" type="VARCHAR(50)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="country_id" type="NUMERIC(9)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="last_update" type="TIMESTAMP" defaultValueDate="LOCALTIMESTAMP">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+
+        <addForeignKeyConstraint baseTableName="city" baseColumnNames="country_id" constraintName="city_country_id_fkey"
+                                 referencedTableName="country" referencedColumnNames="country_id" onUpdate="CASCADE"
+                                 onDelete="RESTRICT"/>
+    </changeSet>
+
+</databaseChangeLog>

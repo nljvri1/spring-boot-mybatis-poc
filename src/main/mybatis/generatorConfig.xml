@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE generatorConfiguration
+        PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
+        "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+
+<generatorConfiguration>
+    <context id="GeneratedTables" targetRuntime="MyBatis3DynamicSql">
+        <plugin type="org.mybatis.generator.plugins.SerializablePlugin"/>
+        <plugin type="org.mybatis.generator.plugins.ToStringPlugin"/>
+
+        <jdbcConnection driverClass="${driverClass}"
+                        connectionURL="${connectionUrl}"
+                        userId="${username}"
+                        password="${password}">
+        </jdbcConnection>
+
+        <javaTypeResolver>
+            <property name="forceBigDecimals" value="false"/>
+            <property name="useJSR310Types" value="true"/>
+        </javaTypeResolver>
+
+        <javaModelGenerator targetPackage="nl.litpho.mybatis.generated.model" targetProject="${javaTargetDir}">
+            <property name="enableSubPackages" value="true"/>
+            <property name="trimStrings" value="true"/>
+        </javaModelGenerator>
+
+        <javaClientGenerator type="XMLMAPPER" targetPackage="nl.litpho.mybatis.generated.client" targetProject="${javaTargetDir}">
+            <property name="enableSubPackages" value="true"/>
+        </javaClientGenerator>
+
+        <table schema="PUBLIC" tableName="actor" domainObjectName="ActorTable">
+            <property name="ignoreQualifiersAtRuntime" value="true"/>
+            <generatedKey column="actor_id" sqlStatement="NEXTVAL('actor_actor_id_seq')"/>
+        </table>
+        <table schema="PUBLIC" tableName="film" domainObjectName="FilmTable">
+            <property name="ignoreQualifiersAtRuntime" value="true"/>
+            <generatedKey column="film_id" sqlStatement="NEXTVAL('film_film_id_seq')"/>
+        </table>
+        <table schema="PUBLIC" tableName="country" domainObjectName="CountryTable">
+            <property name="ignoreQualifiersAtRuntime" value="true"/>
+            <generatedKey column="country_id" sqlStatement="NEXTVAL('country_country_id_seq')"/>
+        </table>
+        <table schema="PUBLIC" tableName="city" domainObjectName="CityTable">
+            <property name="ignoreQualifiersAtRuntime" value="true"/>
+            <generatedKey column="city_id" sqlStatement="NEXTVAL('city_city_id_seq')"/>
+        </table>
+    </context>
+</generatorConfiguration>
